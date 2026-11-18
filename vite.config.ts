@@ -21,7 +21,7 @@ export default defineConfig({
         devOptions: { enabled: false },
         manifest: false,
         workbox: {
-          globPatterns: ["**/*.{js,mjs,wasm,css,png,ico,woff2,webmanifest}"],
+          globPatterns: ["**/*.{js,mjs,wasm,gz,css,png,ico,woff2,webmanifest}"],
           maximumFileSizeToCacheInBytes: 32 * 1024 * 1024,
           navigateFallback: null,
           runtimeCaching: [

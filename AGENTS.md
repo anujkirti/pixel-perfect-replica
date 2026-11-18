@@ -39,4 +39,5 @@ use the editor.
 - Use the live settings/feedback context for camera workflows and a shared pure confirmation pipeline for all engines and synthetic tests; this keeps local feedback isolated from historical demo results and safety rules testable.
 - Reset temporal histories when safety settings change; prior-frame confirmations must not survive a new threshold or window.
 - Run ONNX in a module worker with transferred float buffers and explicit tensor disposal; keep browser WebGL/WASM fallback for environments without worker support.
+- Serve ONNX WASM and its matching module from public/wasm URLs set inside client load handlers; source binary imports break the deployed server bundle.
 <!-- AGENT-MEMORY:END -->

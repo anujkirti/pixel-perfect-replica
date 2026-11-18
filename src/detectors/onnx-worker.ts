@@ -1,7 +1,6 @@
 import type { LiveDetection } from "./types";
 import { decodeYolo, type letterboxGeometry } from "@/lib/letterbox";
-import wasmUrl from "onnxruntime-web/ort-wasm-simd-threaded.wasm?url";
-import wasmModuleUrl from "onnxruntime-web/ort-wasm-simd-threaded.mjs?url";
+import { onnxRuntimeUrl } from "@/lib/onnx-runtime-url";
 let session: import("onnxruntime-web").InferenceSession | undefined;
 let labels: string[] = [],
   weapons: string[] = [];
@@ -18,7 +17,7 @@ self.onmessage = async (event: MessageEvent<Message>) => {
   try {
     const ort = await import("onnxruntime-web/wasm");
     if (message.type === "load") {
-      ort.env.wasm.wasmPaths = { wasm: wasmUrl, mjs: wasmModuleUrl };
+      ort.env.wasm.wasmPaths = { wasm: await onnxRuntimeUrl(), mjs: new URL("/wasm/ort-wasm-simd-threaded.mjs", self.location.origin).href };
       ort.env.wasm.numThreads = 1;
       ort.env.wasm.proxy = false;
       session = await ort.InferenceSession.create(message.bytes, { executionProviders: ["wasm"] });

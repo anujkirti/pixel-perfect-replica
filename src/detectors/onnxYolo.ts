@@ -1,7 +1,6 @@
 import type { Detector, Frame } from "./types";
 import { preprocess, decodeYolo } from "@/lib/letterbox";
-import wasmUrl from "onnxruntime-web/ort-wasm-simd-threaded.wasm?url";
-import wasmModuleUrl from "onnxruntime-web/ort-wasm-simd-threaded.mjs?url";
+import { onnxRuntimeUrl } from "@/lib/onnx-runtime-url";
 export class OnnxDetector implements Detector {
   private session: import("onnxruntime-web").InferenceSession | undefined;
   private worker: Worker | undefined;
@@ -50,7 +49,7 @@ export class OnnxDetector implements Detector {
       }
     }
     const ort = await import("onnxruntime-web");
-    ort.env.wasm.wasmPaths = { wasm: wasmUrl, mjs: wasmModuleUrl };
+    ort.env.wasm.wasmPaths = { wasm: await onnxRuntimeUrl(), mjs: new URL("/wasm/ort-wasm-simd-threaded.mjs", self.location.origin).href };
     ort.env.wasm.numThreads = 1;
     ort.env.wasm.proxy = false;
     try {
