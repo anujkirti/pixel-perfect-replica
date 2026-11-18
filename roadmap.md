@@ -1,4 +1,5 @@
 # SentinelEye
+- [x] Verify all 12 demo and 24 hard-negative AI explanations with internet disabled after loading both pages; threshold presets update outcomes with no AI requests or runtime errors. Regression tests cover exact confidence boundaries and class-specific changes. Published cold offline reloads remain blocked below.
 - [x] Review all seven pages and local actions; fix first-visit and in-app navigation document caching.
 - [x] Verify fresh preview loads without runtime errors and installs no service worker.
 - [x] Generate AI Gateway explanations for all 36 demo detections and show them in analysis reviews, with verified offline availability.
