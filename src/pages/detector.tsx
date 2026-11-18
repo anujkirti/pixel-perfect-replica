@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { Slider } from "@/components/ui/slider";
 import { CctvScene } from "@/components/sentinel/cctv-scene";
+import { AiExplanation } from "@/components/sentinel/ai-explanation";
 import { useThresholds } from "@/components/sentinel/store";
 import { samples, firstSample, type Scene, type Detection } from "@/data/samples";
 import { filterDetections, evaluateScene } from "@/lib/detection";
@@ -313,6 +314,15 @@ export function Detector() {
               </table>
             </div>
           </section>
+          {!uploaded &&
+            scene.detections.map((_, i) => (
+              <AiExplanation
+                key={`${scene.id}-${i}`}
+                scene={scene}
+                thresholds={thresholds}
+                index={i}
+              />
+            ))}
         </div>
         <aside className="detector-controls panel">
           <div className="panel-heading">

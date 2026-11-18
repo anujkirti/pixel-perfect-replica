@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import { Chart, chartColors } from "@/components/sentinel/charts";
 import { CctvScene } from "@/components/sentinel/cctv-scene";
+import { AiExplanation } from "@/components/sentinel/ai-explanation";
 import { useThresholds } from "@/components/sentinel/store";
 import { hardNegativeExamples } from "@/data/hardNegatives";
 import { pct } from "@/lib/metrics";
@@ -328,14 +329,7 @@ export function HardNegatives() {
           {example && (
             <>
               <CctvScene scene={example} thresholds={thresholds} showSuppressed />
-              <p className="text-sm text-muted-foreground">
-                The ground-truth object is a {example.category}, not a weapon. Its shape and
-                low-light hand pose resemble a {example.detections[0]?.label ?? "firearm"}. Raw
-                confidence {(example.detections[0]?.confidence ?? 0).toFixed(2)} is compared against
-                the current {thresholds[example.detections[0]?.label ?? "firearm"].toFixed(2)}{" "}
-                threshold. Add similar labelled negatives and confirm detections across multiple
-                frames.
-              </p>
+              <AiExplanation scene={example} thresholds={thresholds} />
             </>
           )}
         </DialogContent>

@@ -1,0 +1,187 @@
+{
+  "model": "openai/gpt-6.1-sol",
+  "source": "Lovable AI Gateway",
+  "runId": "01a1f00c-23bf-7f25-96a0-a1fe2fe9b16d",
+  "explanations": [
+    {
+      "id": "CAM-01",
+      "rationale": "The firearm detection at confidence 0.91 matches the firearm ground truth in the supplied metadata. This is a true weapon example, so rejecting it would reduce recall.",
+      "review": "Have a human verify the detection against the annotated ground truth."
+    },
+    {
+      "id": "CAM-02",
+      "rationale": "The firearm detection at confidence 0.84 matches the firearm ground truth in the supplied metadata. This is a true weapon example, so dismissing it would incur a recall cost.",
+      "review": "Have a human verify the detection against the annotated ground truth."
+    },
+    {
+      "id": "CAM-03",
+      "rationale": "The firearm detection at confidence 0.95 matches the firearm ground truth in the supplied metadata. Retaining this true weapon example matters for firearm recall.",
+      "review": "Have a human verify the detection against the annotated ground truth."
+    },
+    {
+      "id": "CAM-04",
+      "rationale": "The knife detection at confidence 0.88 matches the knife ground truth in the supplied metadata. Rejecting this true weapon example would reduce knife recall.",
+      "review": "Have a human verify the detection against the annotated ground truth."
+    },
+    {
+      "id": "CAM-05",
+      "rationale": "The knife detection at confidence 0.78 matches the knife ground truth in the supplied metadata. Treating it as a hard negative would incorrectly sacrifice knife recall.",
+      "review": "Have a human verify this true knife annotation separately from hard negatives."
+    },
+    {
+      "id": "CAM-06",
+      "rationale": "The knife detection at confidence 0.55 matches the knife ground truth despite its low confidence. Dismissing this true knife alongside hard negatives would incur an important recall cost.",
+      "review": "Explicitly verify that hard-negative validation preserves this low-confidence true knife."
+    },
+    {
+      "id": "CAM-07",
+      "rationale": "The firearm detection at confidence 0.52 conflicts with the umbrella ground truth, making it a hard-negative false positive. Look-alike ambiguity is only a hypothesis, and this error can cause unnecessary review.",
+      "review": "Validate the umbrella example as a hard negative with human verification."
+    },
+    {
+      "id": "CAM-08",
+      "rationale": "The firearm detection at confidence 0.44 conflicts with the umbrella ground truth, making it a hard-negative false positive. Possible look-alike ambiguity is unverified, and the error adds avoidable review burden.",
+      "review": "Include this umbrella example in human-checked hard-negative validation."
+    },
+    {
+      "id": "CAM-09",
+      "rationale": "The firearm detection at confidence 0.48 conflicts with the phone ground truth, making it a hard-negative false positive. Possible look-alike ambiguity remains hypothetical, and the error reduces precision.",
+      "review": "Validate the phone example as a hard negative with human verification."
+    },
+    {
+      "id": "CAM-10",
+      "rationale": "The firearm detection at confidence 0.36 conflicts with the phone ground truth, making it a hard-negative false positive. Even at low confidence, this error can add unnecessary review work.",
+      "review": "Include this phone example in human-checked hard-negative validation."
+    },
+    {
+      "id": "CAM-11",
+      "rationale": "The knife detection at confidence 0.51 conflicts with the tool ground truth, making it a hard-negative false positive. Tool–knife look-alike ambiguity is only a hypothesis, and the error reduces precision.",
+      "review": "Validate this tool hard negative without sacrificing true knife recall."
+    },
+    {
+      "id": "CAM-12",
+      "rationale": "The knife detection at confidence 0.39 conflicts with the tool ground truth, making it a hard-negative false positive. This error adds review burden, but correcting it must not erase low-confidence true knives.",
+      "review": "Use human-checked tool hard negatives while retaining the true knife examples."
+    },
+    {
+      "id": "HN-001",
+      "rationale": "The firearm detection at confidence 0.55 conflicts with the umbrella ground truth, confirming a hard-negative false positive. Possible look-alike ambiguity is hypothetical, and the error can generate unnecessary review.",
+      "review": "Have a human validate this umbrella hard negative."
+    },
+    {
+      "id": "HN-002",
+      "rationale": "The firearm detection at confidence 0.54 conflicts with the phone ground truth, confirming a hard-negative false positive. Possible look-alike ambiguity is hypothetical, and the error reduces firearm precision.",
+      "review": "Have a human validate this phone hard negative."
+    },
+    {
+      "id": "HN-003",
+      "rationale": "The knife detection at confidence 0.53 conflicts with the tool ground truth, confirming a hard-negative false positive. Possible tool–knife ambiguity is hypothetical, and the error adds avoidable review burden.",
+      "review": "Validate this tool hard negative while preserving low-confidence true knife recall."
+    },
+    {
+      "id": "HN-004",
+      "rationale": "The knife detection at confidence 0.53 conflicts with ground truth other, whose specific object is unspecified. This hard-negative false positive reduces precision without establishing what caused the confusion.",
+      "review": "Have a human validate the other-category annotation without assuming a specific object."
+    },
+    {
+      "id": "HN-005",
+      "rationale": "The firearm detection at confidence 0.52 conflicts with the umbrella ground truth, confirming a hard-negative false positive. This mismatch reduces precision and can cause unnecessary review.",
+      "review": "Include this umbrella example in human-checked hard-negative validation."
+    },
+    {
+      "id": "HN-006",
+      "rationale": "The firearm detection at confidence 0.51 conflicts with the phone ground truth, confirming a hard-negative false positive. This mismatch can create avoidable review work rather than represent a true weapon example.",
+      "review": "Include this phone example in human-checked hard-negative validation."
+    },
+    {
+      "id": "HN-007",
+      "rationale": "The knife detection at confidence 0.5 conflicts with the tool ground truth, confirming a hard-negative false positive. Correcting this precision error matters, but dismissing true knives at similar confidence would harm recall.",
+      "review": "Validate the tool hard negative separately from low-confidence true knives."
+    },
+    {
+      "id": "HN-008",
+      "rationale": "The knife detection at confidence 0.49 conflicts with ground truth other, whose specific object is unspecified. This hard-negative false positive adds review burden without identifying the source of ambiguity.",
+      "review": "Have a human validate this unspecified other-category hard negative."
+    },
+    {
+      "id": "HN-009",
+      "rationale": "The firearm detection at confidence 0.49 conflicts with the umbrella ground truth, confirming a hard-negative false positive. Look-alike ambiguity is only a hypothesis, and the mismatch reduces precision.",
+      "review": "Have a human validate this umbrella hard negative."
+    },
+    {
+      "id": "HN-010",
+      "rationale": "The firearm detection at confidence 0.48 conflicts with the phone ground truth, confirming a hard-negative false positive. Look-alike ambiguity is only a hypothesis, and the mismatch adds unnecessary review work.",
+      "review": "Have a human validate this phone hard negative."
+    },
+    {
+      "id": "HN-011",
+      "rationale": "The knife detection at confidence 0.47 conflicts with the tool ground truth, confirming a hard-negative false positive. This error reduces knife precision, while true knife examples still require recall protection.",
+      "review": "Validate this tool example alongside the low-confidence true knife example."
+    },
+    {
+      "id": "HN-012",
+      "rationale": "The knife detection at confidence 0.46 conflicts with ground truth other, whose specific object is unspecified. This hard-negative false positive reduces precision, and its cause cannot be established from metadata.",
+      "review": "Have a human validate the other-category hard negative without inventing its object."
+    },
+    {
+      "id": "HN-013",
+      "rationale": "The firearm detection at confidence 0.45 conflicts with the umbrella ground truth, confirming a hard-negative false positive. This error can add review burden even though the metadata specifies an umbrella.",
+      "review": "Include this umbrella example in human-checked hard-negative validation."
+    },
+    {
+      "id": "HN-014",
+      "rationale": "The firearm detection at confidence 0.45 conflicts with the phone ground truth, confirming a hard-negative false positive. This error reduces precision and can prompt unnecessary review.",
+      "review": "Include this phone example in human-checked hard-negative validation."
+    },
+    {
+      "id": "HN-015",
+      "rationale": "The knife detection at confidence 0.44 conflicts with the tool ground truth, confirming a hard-negative false positive. Possible look-alike ambiguity is hypothetical, and resolving this error should not sacrifice true knife recall.",
+      "review": "Have a human validate this tool hard negative and retain true knife cases."
+    },
+    {
+      "id": "HN-016",
+      "rationale": "The knife detection at confidence 0.43 conflicts with ground truth other, whose specific object is unspecified. This hard-negative false positive adds avoidable review work without revealing the actual object.",
+      "review": "Have a human validate this unspecified other-category hard negative."
+    },
+    {
+      "id": "HN-017",
+      "rationale": "The firearm detection at confidence 0.42 conflicts with the umbrella ground truth, confirming a hard-negative false positive. Possible look-alike ambiguity is unverified, and this mismatch reduces precision.",
+      "review": "Have a human validate this umbrella hard negative."
+    },
+    {
+      "id": "HN-018",
+      "rationale": "The firearm detection at confidence 0.41 conflicts with the phone ground truth, confirming a hard-negative false positive. Possible look-alike ambiguity is unverified, and this mismatch adds review burden.",
+      "review": "Have a human validate this phone hard negative."
+    },
+    {
+      "id": "HN-019",
+      "rationale": "The knife detection at confidence 0.41 conflicts with the tool ground truth, confirming a hard-negative false positive. Reducing this error improves precision, but excluding low-confidence true knives would incur recall costs.",
+      "review": "Validate this tool hard negative separately from the true knife metadata."
+    },
+    {
+      "id": "HN-020",
+      "rationale": "The knife detection at confidence 0.4 conflicts with ground truth other, whose specific object is unspecified. This hard-negative false positive reduces precision without supporting any particular look-alike explanation.",
+      "review": "Have a human validate the other-category annotation without assuming its identity."
+    },
+    {
+      "id": "HN-021",
+      "rationale": "The firearm detection at confidence 0.39 conflicts with the umbrella ground truth, confirming a hard-negative false positive. Even at low confidence, this mismatch can cause unnecessary review.",
+      "review": "Include this umbrella example in human-checked hard-negative validation."
+    },
+    {
+      "id": "HN-022",
+      "rationale": "The firearm detection at confidence 0.38 conflicts with the phone ground truth, confirming a hard-negative false positive. Even at low confidence, this mismatch reduces precision and adds review burden.",
+      "review": "Include this phone example in human-checked hard-negative validation."
+    },
+    {
+      "id": "HN-023",
+      "rationale": "The knife detection at confidence 0.37 conflicts with the tool ground truth, confirming a hard-negative false positive. Correcting this error matters for precision, while the low-confidence true knife must remain protected against recall loss.",
+      "review": "Validate this tool hard negative alongside the low-confidence true knife."
+    },
+    {
+      "id": "HN-024",
+      "rationale": "The knife detection at confidence 0.37 conflicts with ground truth other, whose specific object is unspecified. This hard-negative false positive adds review burden, but the metadata does not explain its cause.",
+      "review": "Have a human validate this unspecified other-category hard negative."
+    }
+  ]
+}

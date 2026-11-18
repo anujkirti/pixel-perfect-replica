@@ -1869,3 +1869,7 @@ code {
     height: 13px;
   }
 }
+
+.ai-explanation {margin-top:20px;padding:20px 0;border-top:1px solid var(--border);}
+.explanation-outcome {display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:16px;font-size:10px;color:var(--primary);}
+.explanation-source {margin-top:16px;font-size:9px;color:var(--muted-foreground);line-height:1.8;}

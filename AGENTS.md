@@ -33,4 +33,5 @@ use the editor.
 - Keep deterministic demo data in typed data modules and threshold/NMS/evaluation math in shared pure libraries; this makes cross-page behavior testable.
 - Register generated app-shell caching only through the guarded offline module; previews must never install the app service worker.
 - Validate complete imported result bundles before replacing local state; partial or malformed evaluation data must not corrupt charts.
+- Bundle one-time AI Gateway explanations as public demo data; never expose gateway credentials or introduce live AI dependencies into the offline research demo. Recompute threshold outcomes using shared math, not generated prose.
 <!-- AGENT-MEMORY:END -->
