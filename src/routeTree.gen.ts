@@ -10,33 +10,115 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as DetectorRouteImport } from './routes/detector'
+import { Route as HardNegativesRouteImport } from './routes/hard-negatives'
+import { Route as ModelRouteImport } from './routes/model'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as TuningRouteImport } from './routes/tuning'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DetectorRoute = DetectorRouteImport.update({
+  id: '/detector',
+  path: '/detector',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HardNegativesRoute = HardNegativesRouteImport.update({
+  id: '/hard-negatives',
+  path: '/hard-negatives',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ModelRoute = ModelRouteImport.update({
+  id: '/model',
+  path: '/model',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TuningRoute = TuningRouteImport.update({
+  id: '/tuning',
+  path: '/tuning',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/detector': typeof DetectorRoute
+  '/hard-negatives': typeof HardNegativesRoute
+  '/model': typeof ModelRoute
+  '/settings': typeof SettingsRoute
+  '/tuning': typeof TuningRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/detector': typeof DetectorRoute
+  '/hard-negatives': typeof HardNegativesRoute
+  '/model': typeof ModelRoute
+  '/settings': typeof SettingsRoute
+  '/tuning': typeof TuningRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/detector': typeof DetectorRoute
+  '/hard-negatives': typeof HardNegativesRoute
+  '/model': typeof ModelRoute
+  '/settings': typeof SettingsRoute
+  '/tuning': typeof TuningRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/detector'
+    | '/hard-negatives'
+    | '/model'
+    | '/settings'
+    | '/tuning'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/detector'
+    | '/hard-negatives'
+    | '/model'
+    | '/settings'
+    | '/tuning'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/detector'
+    | '/hard-negatives'
+    | '/model'
+    | '/settings'
+    | '/tuning'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  DetectorRoute: typeof DetectorRoute
+  HardNegativesRoute: typeof HardNegativesRoute
+  ModelRoute: typeof ModelRoute
+  SettingsRoute: typeof SettingsRoute
+  TuningRoute: typeof TuningRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +130,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/detector': {
+      id: '/detector'
+      path: '/detector'
+      fullPath: '/detector'
+      preLoaderRoute: typeof DetectorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hard-negatives': {
+      id: '/hard-negatives'
+      path: '/hard-negatives'
+      fullPath: '/hard-negatives'
+      preLoaderRoute: typeof HardNegativesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/model': {
+      id: '/model'
+      path: '/model'
+      fullPath: '/model'
+      preLoaderRoute: typeof ModelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tuning': {
+      id: '/tuning'
+      path: '/tuning'
+      fullPath: '/tuning'
+      preLoaderRoute: typeof TuningRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  DetectorRoute: DetectorRoute,
+  HardNegativesRoute: HardNegativesRoute,
+  ModelRoute: ModelRoute,
+  SettingsRoute: SettingsRoute,
+  TuningRoute: TuningRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

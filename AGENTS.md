@@ -28,3 +28,9 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+<!-- AGENT-MEMORY:BEGIN -->
+- Use TanStack file routes with a shared shell and browser-only evaluation context; this preserves typed navigation and the offline no-backend requirement.
+- Keep deterministic demo data in typed data modules and threshold/NMS/evaluation math in shared pure libraries; this makes cross-page behavior testable.
+- Register generated app-shell caching only through the guarded offline module; previews must never install the app service worker.
+- Validate complete imported result bundles before replacing local state; partial or malformed evaluation data must not corrupt charts.
+<!-- AGENT-MEMORY:END -->
