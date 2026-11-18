@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import { useRouterState } from '@tanstack/react-router';
 import { demoResults, resultsSchema, type Results } from "@/lib/results";
 import { registerOffline } from "@/lib/offline";
 import type { Thresholds } from "@/lib/detection";
@@ -17,6 +18,7 @@ type Store = {
 };
 const Context = createContext<Store | null>(null);
 export function SentinelProvider({ children }: { children: ReactNode }) {
+  const pathname = useRouterState({select: state => state.location.pathname});
   const [thresholds, setThresholds] = useState<Thresholds>({ ...demoResults.metrics.recommended });
   const [settings, setSettings] = useState(defaults);
   const [results, setResultsState] = useState(demoResults);
@@ -48,8 +50,8 @@ export function SentinelProvider({ children }: { children: ReactNode }) {
       localStorage.removeItem("sentineleye");
     }
     setReady(true);
-    registerOffline().catch(() => {});
   }, []);
+  useEffect(() => { registerOffline().catch(() => {}); }, [pathname]);
   useEffect(() => {
     if (ready)
       localStorage.setItem(

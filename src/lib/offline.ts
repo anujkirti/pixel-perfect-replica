@@ -23,4 +23,21 @@ export async function registerOffline() {
     return;
   }
   await navigator.serviceWorker.register("/sw.js");
+  // The first document loads before the worker controls this tab. Warm its
+  // HTML through the worker once activation completes, without reloading.
+  await navigator.serviceWorker.ready;
+  if (!navigator.serviceWorker.controller) {
+    await new Promise<void>((resolve) => {
+      navigator.serviceWorker.addEventListener("controllerchange", () => resolve(), { once: true });
+      if (navigator.serviceWorker.controller) resolve();
+    });
+  }
+  const page = new URL(window.location.href);
+  if (!page.pathname.startsWith("/~oauth") && !page.pathname.startsWith("/api/")) {
+    await fetch(page.href, {
+      headers: { "X-SentinelEye-Offline-Page": "1" },
+      credentials: "same-origin",
+      cache: "no-store",
+    });
+  }
 }

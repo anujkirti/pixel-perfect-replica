@@ -1,4 +1,5 @@
 # SentinelEye
+- [x] Review all seven pages and local actions; fix first-visit and in-app navigation document caching.
 - [x] Verify fresh preview loads without runtime errors and installs no service worker.
 - [x] Generate AI Gateway explanations for all 36 demo detections and show them in analysis reviews, with verified offline availability.
 - [x] Deterministic data and threshold math

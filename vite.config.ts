@@ -26,7 +26,11 @@ export default defineConfig({
           runtimeCaching: [
             {
               urlPattern: ({ request, url }) =>
-                request.mode === "navigate" && !url.pathname.startsWith("/~oauth"),
+                url.origin === self.location.origin &&
+                !url.pathname.startsWith("/~oauth") &&
+                !url.pathname.startsWith("/api/") &&
+                (request.mode === "navigate" ||
+                  request.headers.get("X-SentinelEye-Offline-Page") === "1"),
               handler: "NetworkFirst",
               options: {
                 cacheName: "sentineleye-pages",
