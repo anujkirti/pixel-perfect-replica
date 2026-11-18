@@ -39,7 +39,9 @@ export function SentinelProvider({ children }: { children: ReactNode }) {
           )
         )
           setThresholds(saved.thresholds);
-        if (saved.settings) setSettings({ ...defaults, ...saved.settings });
+        // Historical sample uploads remain local; remote sharing is only available
+        // through the live camera's explicit consent controls.
+        if (saved.settings) setSettings({ ...defaults, ...saved.settings, mode: "demo" });
         const parsed = resultsSchema.safeParse(saved.results);
         if (parsed.success) {
           setResultsState(parsed.data);

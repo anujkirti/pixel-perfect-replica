@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 import { SentinelProvider } from "@/components/sentinel/store";
 import { AppShell } from "@/components/sentinel/shell";
 import { Toaster } from "@/components/ui/sonner";
+import { LiveProvider } from "@/components/live/store";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -132,10 +133,12 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <SentinelProvider>
+        <LiveProvider>
         <AppShell>
           <Outlet />
         </AppShell>
         <Toaster />
+        </LiveProvider>
       </SentinelProvider>
     </QueryClientProvider>
   );

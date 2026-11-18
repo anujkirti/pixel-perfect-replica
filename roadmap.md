@@ -1,4 +1,5 @@
 # SentinelEye
+- [x] Build live camera controls, browser detection engines, temporal tracking, overlays, local feedback, analysis and settings. Verified COCO-SSD inference and ONNX worker inference using a constant-output runtime fixture on a synthetic browser camera; no frame uploads. Verified feedback persistence, CSV/PNG export, recommendations, settings import rejection, remote consent revocation against a mocked endpoint, and offline synthetic test. All 28 tests pass. Real trained weapon accuracy and physical camera devices require user hardware/model validation.
 - [x] Verify all 12 demo and 24 hard-negative AI explanations with internet disabled after loading both pages; threshold presets update outcomes with no AI requests or runtime errors. Regression tests cover exact confidence boundaries and class-specific changes. Published cold offline reloads remain blocked below.
 - [x] Review all seven pages and local actions; fix first-visit and in-app navigation document caching.
 - [x] Verify fresh preview loads without runtime errors and installs no service worker.

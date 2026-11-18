@@ -1,21 +1,21 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { SettingsPage } from "@/pages/settings";
+import { LiveSettingsPage } from "@/pages/live-settings";
 export const Route = createFileRoute("/settings")({
   head: () => ({
     meta: [
-      { title: "Settings | SentinelEye" },
+      { title: "Device Settings | SentinelEye Live" },
       {
         name: "description",
-        content: "Configure local preferences, optional model inference and evaluation imports.",
+        content: "Set camera preferences, confirmation thresholds and local feedback storage.",
       },
-      { property: "og:title", content: "Settings | SentinelEye" },
+      { property: "og:title", content: "Device Settings | SentinelEye Live" },
       {
         property: "og:description",
-        content: "Configure local preferences, optional model inference and evaluation imports.",
+        content: "Set camera preferences, confirmation thresholds and local feedback storage.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
-  component: SettingsPage,
+  component: LiveSettingsPage,
 });

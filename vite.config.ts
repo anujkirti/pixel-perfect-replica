@@ -21,7 +21,8 @@ export default defineConfig({
         devOptions: { enabled: false },
         manifest: false,
         workbox: {
-          globPatterns: ["**/*.{js,css,png,ico,woff2,webmanifest}"],
+          globPatterns: ["**/*.{js,mjs,wasm,css,png,ico,woff2,webmanifest}"],
+          maximumFileSizeToCacheInBytes: 32 * 1024 * 1024,
           navigateFallback: null,
           runtimeCaching: [
             {
@@ -42,7 +43,7 @@ export default defineConfig({
             {
               urlPattern: ({ url }) =>
                 url.origin === self.location.origin &&
-                /\/assets\/.*[.-][a-zA-Z0-9_-]{8,}\.(js|css|woff2)$/.test(url.pathname),
+                /\/assets\/.*[.-][a-zA-Z0-9_-]{8,}\.(js|mjs|wasm|css|woff2)$/.test(url.pathname),
               handler: "CacheFirst",
               options: { cacheName: "sentineleye-assets", expiration: { maxEntries: 100 } },
             },

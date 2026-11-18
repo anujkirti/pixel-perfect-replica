@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as AnalysisRouteImport } from './routes/analysis'
 import { Route as DetectorRouteImport } from './routes/detector'
 import { Route as HardNegativesRouteImport } from './routes/hard-negatives'
 import { Route as ModelRouteImport } from './routes/model'
@@ -25,6 +26,11 @@ const IndexRoute = IndexRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnalysisRoute = AnalysisRouteImport.update({
+  id: '/analysis',
+  path: '/analysis',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DetectorRoute = DetectorRouteImport.update({
@@ -56,6 +62,7 @@ const TuningRoute = TuningRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/analysis': typeof AnalysisRoute
   '/detector': typeof DetectorRoute
   '/hard-negatives': typeof HardNegativesRoute
   '/model': typeof ModelRoute
@@ -65,6 +72,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/analysis': typeof AnalysisRoute
   '/detector': typeof DetectorRoute
   '/hard-negatives': typeof HardNegativesRoute
   '/model': typeof ModelRoute
@@ -75,6 +83,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/analysis': typeof AnalysisRoute
   '/detector': typeof DetectorRoute
   '/hard-negatives': typeof HardNegativesRoute
   '/model': typeof ModelRoute
@@ -86,6 +95,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/analysis'
     | '/detector'
     | '/hard-negatives'
     | '/model'
@@ -95,6 +105,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/analysis'
     | '/detector'
     | '/hard-negatives'
     | '/model'
@@ -104,6 +115,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/analysis'
     | '/detector'
     | '/hard-negatives'
     | '/model'
@@ -114,6 +126,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  AnalysisRoute: typeof AnalysisRoute
   DetectorRoute: typeof DetectorRoute
   HardNegativesRoute: typeof HardNegativesRoute
   ModelRoute: typeof ModelRoute
@@ -135,6 +148,13 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/analysis': {
+      id: '/analysis'
+      path: '/analysis'
+      fullPath: '/analysis'
+      preLoaderRoute: typeof AnalysisRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/detector': {
@@ -178,6 +198,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  AnalysisRoute: AnalysisRoute,
   DetectorRoute: DetectorRoute,
   HardNegativesRoute: HardNegativesRoute,
   ModelRoute: ModelRoute,

@@ -18,9 +18,11 @@ import {
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { useThresholds } from "./store";
+import { useLive } from "@/components/live/store";
 const nav = [
-  { to: "/", title: "Overview", icon: LayoutDashboard },
-  { to: "/detector", title: "Live detector", icon: ScanLine },
+  { to: "/", title: "Live camera", icon: ScanLine },
+  { to: "/analysis", title: "Feedback analysis", icon: LayoutDashboard },
+  { to: "/detector", title: "Demo scene review", icon: ScanLine },
   { to: "/tuning", title: "Threshold tuning", icon: SlidersHorizontal },
   { to: "/hard-negatives", title: "Hard-negative analysis", icon: Layers },
   { to: "/model", title: "Model & dataset", icon: Cpu },
@@ -32,6 +34,7 @@ export function AppShell({ children }: { children: ReactNode }) {
   const [collapsed, setCollapsed] = useState(false);
   const [mobile, setMobile] = useState(false);
   const { reset, imported } = useThresholds();
+  const live = useLive();
   const active = nav.find((n) => n.to === path);
   return (
     <div className={`app-shell ${collapsed ? "sidebar-collapsed" : ""}`}>
@@ -43,12 +46,12 @@ export function AppShell({ children }: { children: ReactNode }) {
           </span>
           <span className="brand-word">
             Sentinel<span>Eye</span>
-            <small>WEAPON DETECTION LAB</small>
+            <small>LIVE · ON-DEVICE RESEARCH</small>
           </span>
         </Link>
         <div className="sidebar-label">WORKSPACE</div>
         <nav aria-label="Main navigation">
-          {nav.slice(0, 5).map((n) => (
+          {nav.slice(0, 6).map((n) => (
             <Button
               asChild
               variant="ghost"
@@ -68,13 +71,13 @@ export function AppShell({ children }: { children: ReactNode }) {
           <div className="sidebar-demo">
             <span className="status-dot" />
             <span>
-              {imported ? "Imported results" : "Demo data"}
-              <small>Local research environment</small>
+              {live.entries.length ? `${live.entries.length} local events` : "On-device workspace"}
+              <small>No account · human verified</small>
             </span>
             <span className="mono">v1.0</span>
           </div>
           <nav aria-label="Preferences">
-            {nav.slice(5).map((n) => (
+            {nav.slice(6).map((n) => (
               <Button
                 asChild
                 variant="ghost"
@@ -124,18 +127,19 @@ export function AppShell({ children }: { children: ReactNode }) {
           <div className="flex items-center gap-4">
             <span className="topbar-status">
               <span className="status-dot" />
-              Demo environment
+              On-device research
             </span>
             <Button
               variant="outline"
               size="sm"
               onClick={() => {
                 reset();
-                toast.success("Demo data and preferences reset.");
+                live.reset();
+                toast.success("Detector defaults restored.");
               }}
             >
               <RotateCcw />
-              Reset demo
+              Reset defaults
             </Button>
             <Button asChild variant="ghost" size="icon" aria-label="Documentation">
               <Link to="/about">

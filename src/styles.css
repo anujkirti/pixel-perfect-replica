@@ -646,6 +646,45 @@ svg {
   min-width: 0;
   overflow: hidden;
 }
+.live-layout { display:grid; grid-template-columns:minmax(0,1fr) 290px; gap:26px; align-items:start; }
+.live-privacy { display:flex; align-items:center; gap:8px; font-size:11px; max-width:360px; line-height:1.6; }
+.live-viewer { border:1px solid var(--border); border-radius:6px; overflow:hidden; background:var(--card); }
+.live-stage { position:relative; background:var(--background); aspect-ratio:16/9; overflow:hidden; }
+.live-stage video,.live-stage>canvas { width:100%; height:100%; object-fit:contain; position:absolute; inset:0; }
+.live-stage>.live-overlay { object-fit:contain; pointer-events:none; }
+.live-mirrored { transform:scaleX(-1); }
+.live-idle { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; background:repeating-linear-gradient(0deg,transparent,transparent 39px,var(--border) 40px); }
+.live-idle h2 { font-size:20px; }
+.live-loading { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; gap:12px; background:var(--background); padding:25px; text-align:center; }
+.live-spinner { width:18px; height:18px; display:inline-block; border:2px solid var(--muted); border-top-color:var(--primary); border-radius:50%; animation:live-spin 1s linear infinite; }
+.live-status { min-height:44px; display:flex; align-items:center; padding:10px 16px; font-size:12px; font-weight:600; border-top:1px solid var(--border); }
+.live-status-clear { color:var(--success); }
+.live-status-candidate { color:var(--primary); }
+.live-status-alert { color:var(--destructive); animation:live-alert 1.5s ease-in-out infinite; }
+.live-actions { display:flex; flex-wrap:wrap; gap:8px; padding:12px; border-top:1px solid var(--border); }
+.live-controls>section { border-bottom:1px solid var(--border); padding-bottom:22px; margin-bottom:20px; }
+.live-controls .section-heading { margin-top:0; }
+.live-controls label,.live-settings label { font-size:11px; color:var(--muted-foreground); }
+.live-controls select,.live-controls input,.live-settings select { width:100%; margin:7px 0 12px; }
+.live-toggle { display:flex; align-items:center; justify-content:space-between; gap:12px; margin:14px 0; }
+.live-toggle label { margin:0; }
+.live-presets { display:flex; gap:7px; flex-wrap:wrap; margin-bottom:15px; }
+.live-class { display:flex; align-items:center; gap:6px; }
+.live-class input { width:auto; margin:0; }
+.live-stats { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); margin-top:22px; border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+.live-stats>div { padding:17px 12px; min-width:0; }
+.live-stats span { color:var(--muted-foreground); font-size:10px; display:block; }
+.live-stats strong { display:block; font-size:23px; margin-top:7px; }
+.analysis-stats { grid-template-columns:repeat(4,minmax(0,1fr)); }
+.live-log-thumb { width:90px; aspect-ratio:16/9; object-fit:contain; border:1px solid var(--border); }
+.live-recommendation { border-block:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; gap:25px; padding:25px 0; }
+.live-setup-list { list-style:decimal; padding-left:22px; display:grid; gap:18px; color:var(--foreground); }
+.live-setup-list p { color:var(--muted-foreground); margin-top:5px; }
+@keyframes live-spin { to { transform:rotate(360deg); } }
+@keyframes live-alert { 50% { opacity:.6; } }
+@media(max-width:1200px) { .live-layout { grid-template-columns:minmax(0,1fr); } .live-controls { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:22px; } .live-controls>section:last-child { grid-column:1/-1; } }
+@media(max-width:600px) { .live-controls { grid-template-columns:minmax(0,1fr); } .live-stats,.analysis-stats { grid-template-columns:repeat(2,minmax(0,1fr)); } .live-recommendation { flex-direction:column; align-items:flex-start; } .live-idle { gap:8px; } .live-idle h2 { font-size:16px; } .live-idle>svg { width:28px; height:28px; } }
+@media(prefers-reduced-motion:reduce) { .live-status-alert,.live-spinner { animation:none; } }
 .panel-heading {
   padding: 19px 20px 12px;
   display: flex;

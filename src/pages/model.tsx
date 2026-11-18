@@ -35,6 +35,16 @@ export function Model() {
         </div>
         <span className="subtle-tag">SYNTHETIC RESULTS</span>
       </div>
+      <section className="mb-7">
+        <div className="section-heading"><h2>Run your trained model on-device</h2><span className="subtle-tag">YOLOv8 · ONNX</span></div>
+        <ol className="live-setup-list">
+          <li><strong>Export the trained weights.</strong><pre className="config-code">{'from ultralytics import YOLO\nYOLO("best.pt").export(format="onnx", imgsz=640, opset=12, simplify=True)'}</pre></li>
+          <li><strong>Open Live camera → Model → My fine-tuned model.</strong><p>Upload the .onnx file. The file stays in this browser’s IndexedDB storage.</p></li>
+          <li><strong>Set class names in the exact training order.</strong><p>Default: firearm,knife. Check weapon classes; leave umbrellas, phones, tools and scissors unchecked.</p></li>
+          <li><strong>Load the model, then start the camera.</strong><p>The browser letterboxes frames to 640×640, normalizes RGB data, decodes [1, 4+nc, boxes], applies NMS and restores video coordinates. Unsupported model layouts show an error instead of fabricated results.</p></li>
+          <li><strong>Validate thresholds and human feedback.</strong><p>The COCO-SSD demo detects knives and common look-alikes, but has no firearm class. Synthetic testing is scripted, not a substitute for evaluating trained weights.</p></li>
+        </ol>
+      </section>
       <div className="grid lg:grid-cols-2 gap-5">
         <section className="panel">
           <div className="panel-heading">

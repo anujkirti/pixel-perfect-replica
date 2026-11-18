@@ -1,23 +1,23 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Overview } from "@/pages/overview";
+import { LiveCamera } from "@/pages/live-camera";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Overview | SentinelEye" },
+      { title: "Live Camera Detector | SentinelEye Live" },
       {
         name: "description",
         content:
-          "Weapon detection research dashboard comparing baseline and tuned false-positive performance.",
+          "On-device live camera weapon detection with temporal confirmation and hard-negative guards.",
       },
-      { property: "og:title", content: "Overview | SentinelEye" },
+      { property: "og:title", content: "Live Camera Detector | SentinelEye Live" },
       {
         property: "og:description",
         content:
-          "Weapon detection research dashboard comparing baseline and tuned false-positive performance.",
+          "On-device live camera weapon detection with temporal confirmation and hard-negative guards.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
-  component: Overview,
+  component: LiveCamera,
 });

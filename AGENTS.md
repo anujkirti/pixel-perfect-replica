@@ -35,4 +35,8 @@ use the editor.
 - Warm the current public document through the activated worker after registration; the first online visit precedes worker control and would otherwise lack an offline HTML entry.
 - Validate complete imported result bundles before replacing local state; partial or malformed evaluation data must not corrupt charts.
 - Bundle one-time AI Gateway explanations as public demo data; never expose gateway credentials or introduce live AI dependencies into the offline research demo. Recompute threshold outcomes using shared math, not generated prose.
+- Keep live detector engines dynamically imported from browser event handlers; TensorFlow and ONNX must never evaluate in SSR.
+- Use the live settings/feedback context for camera workflows and a shared pure confirmation pipeline for all engines and synthetic tests; this keeps local feedback isolated from historical demo results and safety rules testable.
+- Reset temporal histories when safety settings change; prior-frame confirmations must not survive a new threshold or window.
+- Run ONNX in a module worker with transferred float buffers and explicit tensor disposal; keep browser WebGL/WASM fallback for environments without worker support.
 <!-- AGENT-MEMORY:END -->
